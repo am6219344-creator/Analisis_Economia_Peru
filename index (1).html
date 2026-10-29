@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Análisis exploratorio de la economía del Perú</title>
+<style>
+  :root {
+    --fondo: #f2f5f4;
+    --superficie: #ffffff;
+    --texto: #1b2a2a;
+    --suave: #54666a;
+    --linea: #d3dcdb;
+    --principal: #0f4c4a;
+    --acento: #b3262e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  header {
+    background: var(--principal);
+    color: #fff;
+    padding: 56px 20px 48px;
+    border-bottom: 6px solid var(--acento);
+  }
+  .contenedor { max-width: 960px; margin: 0 auto; }
+  header h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+  header p { margin: 0; max-width: 62ch; color: #d6e6e4; }
+  nav {
+    background: var(--superficie);
+    border-bottom: 1px solid var(--linea);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  nav .contenedor { display: flex; flex-wrap: wrap; gap: 4px 20px; padding: 10px 20px; }
+  nav a { color: var(--principal); text-decoration: none; font-size: .95rem; }
+  nav a:hover, nav a:focus-visible { text-decoration: underline; }
+  main { padding: 32px 20px 56px; }
+  section { margin-bottom: 48px; }
+  h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.6rem;
+    margin: 0 0 8px;
+    color: var(--principal);
+  }
+  p { max-width: 70ch; }
+  figure {
+    margin: 20px 0 0;
+    background: var(--superficie);
+    border: 1px solid var(--linea);
+    border-radius: 6px;
+    padding: 12px;
+  }
+  figure img { width: 100%; height: auto; display: block; }
+  figcaption { font-size: .9rem; color: var(--suave); padding: 10px 4px 0; }
+  .hallazgo {
+    border-left: 4px solid var(--acento);
+    padding: 4px 0 4px 14px;
+    margin: 16px 0 0;
+    max-width: 70ch;
+  }
+  ul { padding-left: 20px; }
+  .aviso {
+    background: #fff6f6;
+    border: 1px solid #e6c3c5;
+    border-radius: 6px;
+    padding: 12px 16px;
+    max-width: 70ch;
+  }
+  .tabla-wrap { overflow-x: auto; margin-top: 16px; }
+  table { border-collapse: collapse; width: 100%; background: var(--superficie); font-size: .92rem; }
+  th, td { padding: 8px 12px; border-bottom: 1px solid var(--linea); text-align: left; }
+  th { background: var(--principal); color: #fff; position: sticky; top: 0; }
+  td.num, th.num { text-align: right; }
+  .controles { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
+  select, .boton {
+    font: inherit;
+    padding: 7px 12px;
+    border: 1px solid var(--principal);
+    border-radius: 4px;
+    background: var(--superficie);
+    color: var(--principal);
+  }
+  .boton { text-decoration: none; background: var(--principal); color: #fff; display: inline-block; }
+  .boton:hover { background: #0b3836; }
+  :focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+  footer { background: var(--texto); color: #cfd8d8; padding: 24px 20px; font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="contenedor">
+    <h1>Análisis exploratorio de la economía del Perú</h1>
+    <p>Inflación, PBI, empleo por región y tipo de cambio entre 2005 y 2025, analizados con Python, Pandas y Matplotlib en Google Colab.</p>
+  </div>
+</header>
+
+<nav aria-label="Secciones">
+  <div class="contenedor">
+    <a href="#objetivo">Objetivo</a>
+    <a href="#inflacion">Inflación</a>
+    <a href="#pbi">PBI</a>
+    <a href="#empleo">Empleo</a>
+    <a href="#tipo-cambio">Tipo de cambio</a>
+    <a href="#resumen">Tabla resumen</a>
+    <a href="#metodologia">Metodología</a>
+  </div>
+</nav>
+
+<main>
+<div class="contenedor">
+
+  <section id="objetivo">
+    <h2>Objetivo</h2>
+    <p>Analizar la evolución de los indicadores económicos de la base de datos <strong>Economia_Peru.csv</strong> (8 000 registros y 12 columnas) y representarlos mediante gráficos.</p>
+    <p class="aviso"><strong>Nota:</strong> los datos de esta base son simulados y se usan solo con fines académicos.</p>
+  </section>
+
+  <section id="inflacion">
+    <h2>Evolución anual de la inflación</h2>
+    <p>Se calculó la inflación promedio de cada año a partir de los registros del indicador «Inflación».</p>
+    <figure>
+      <img src="grafico_inflacion.png" alt="Gráfico de líneas de la inflación promedio anual entre 2005 y 2025">
+      <figcaption>Inflación promedio anual (%).</figcaption>
+    </figure>
+    <p class="hallazgo">La inflación se mantuvo cerca de 3 % durante la mayor parte del periodo. Bajó a menos de 2 % en 2020 y 2021, y subió a más de 7 % en 2022 y 2023, antes de volver a cerca de 3 % en 2024 y 2025.</p>
+  </section>
+
+  <section id="pbi">
+    <h2>Variación anual del PBI</h2>
+    <p>Se promedió la variación del PBI por año para comparar los periodos de crecimiento y de caída.</p>
+    <figure>
+      <img src="grafico_pbi.png" alt="Gráfico de barras de la variación promedio anual del PBI entre 2005 y 2025">
+      <figcaption>Variación promedio anual del PBI (%).</figcaption>
+    </figure>
+    <p class="hallazgo">El PBI creció entre 4 % y 6 % casi todos los años. En 2020 cayó cerca de 11 % y en 2021 se recuperó con un aumento de más de 13 %.</p>
+  </section>
+
+  <section id="empleo">
+    <h2>Indicador de empleo por región</h2>
+    <p>Se calculó el valor promedio del indicador de empleo en cada región y se ordenaron de menor a mayor.</p>
+    <figure>
+      <img src="grafico_empleo_regiones.png" alt="Gráfico de barras horizontales del indicador de empleo promedio por región">
+      <figcaption>Indicador de empleo promedio por región (%).</figcaption>
+    </figure>
+    <p class="hallazgo">Junín y Lima tienen los valores más altos, cerca de 7 %. Ica y Arequipa tienen los más bajos, con alrededor de 5,2 % y 5,7 %.</p>
+  </section>
+
+  <section id="tipo-cambio">
+    <h2>Evolución anual del tipo de cambio</h2>
+    <p>Se calculó el tipo de cambio promedio por año, expresado en soles por dólar.</p>
+    <figure>
+      <img src="grafico_tipo_cambio.png" alt="Gráfico de líneas del tipo de cambio promedio anual en soles por dólar entre 2005 y 2025">
+      <figcaption>Soles por dólar (S/ por US$).</figcaption>
+    </figure>
+    <p class="hallazgo">El tipo de cambio subió de forma gradual desde cerca de S/ 3,25 en 2005. Entre 2020 y 2022 llegó a casi S/ 3,90 y luego bajó a alrededor de S/ 3,62 en 2025.</p>
+  </section>
+
+  <section id="resumen">
+    <h2>Tabla resumen</h2>
+    <p>Promedio, mínimo, máximo y cantidad de registros por año e indicador.</p>
+    <div class="controles">
+      <label for="filtro">Indicador:</label>
+      <select id="filtro">
+        <option value="">Todos</option>
+        <option>Empleo</option>
+        <option>Inflación</option>
+        <option>PBI</option>
+        <option>Tipo de cambio</option>
+      </select>
+      <a class="boton" href="resumen_economia_peru.csv" download>Descargar CSV</a>
+    </div>
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Año</th><th>Indicador</th>
+            <th class="num">Promedio</th><th class="num">Mínimo</th><th class="num">Máximo</th><th class="num">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpo"><tr><td colspan="6">Cargando tabla…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="metodologia">
+    <h2>Metodología</h2>
+    <ul>
+      <li>Se cargó la base de datos en formato CSV desde Google Drive.</li>
+      <li>Se revisaron las columnas, los tipos de datos y los valores faltantes.</li>
+      <li>Se filtró cada indicador y se agrupó por año o por región con Pandas.</li>
+      <li>Se crearon los gráficos con Matplotlib y se guardaron como imágenes PNG.</li>
+      <li>Se generó una tabla resumen y se publicó el proyecto en GitHub.</li>
+    </ul>
+    <p><strong>Herramientas:</strong> Python, Google Colab, Pandas, Matplotlib y GitHub.</p>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="contenedor">Análisis exploratorio de la economía del Perú. Datos simulados con fines académicos.</div>
+</footer>
+
+<script>
+  // Carga resumen_economia_peru.csv (necesita estar en la misma carpeta y abrirse desde un servidor, p. ej. GitHub Pages)
+  var cuerpo = document.getElementById("cuerpo");
+  var filtro = document.getElementById("filtro");
+  var filas = [];
+
+  function dibujar() {
+    var ind = filtro.value;
+    var html = "";
+    filas.forEach(function (f) {
+      if (ind && f[1] !== ind) return;
+      html += "<tr><td>" + f[0] + "</td><td>" + f[1] + "</td>" +
+        '<td class="num">' + f[2] + '</td><td class="num">' + f[3] + '</td>' +
+        '<td class="num">' + f[4] + '</td><td class="num">' + f[5] + "</td></tr>";
+    });
+    cuerpo.innerHTML = html || '<tr><td colspan="6">Sin resultados.</td></tr>';
+  }
+
+  fetch("resumen_economia_peru.csv")
+    .then(function (r) { if (!r.ok) throw new Error(); return r.text(); })
+    .then(function (txt) {
+      var lineas = txt.replace(/^\uFEFF/, "").trim().split(/\r?\n/).slice(1);
+      filas = lineas.map(function (l) { return l.split(","); });
+      dibujar();
+    })
+    .catch(function () {
+      cuerpo.innerHTML = '<tr><td colspan="6">No se pudo cargar la tabla. Coloca resumen_economia_peru.csv junto a este archivo y ábrelo desde un servidor (por ejemplo, GitHub Pages).</td></tr>';
+    });
+
+  filtro.addEventListener("change", dibujar);
+</script>
+
+</body>
+</html>
