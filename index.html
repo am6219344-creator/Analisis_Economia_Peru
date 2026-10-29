@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Proyecto académico de análisis de indicadores económicos del Perú.">
+  <title>Análisis de la Economía del Perú</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3f6f4;
+      color: #24352d;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #145c3a;
+      color: white;
+      text-align: center;
+      padding: 55px 20px;
+    }
+
+    header h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    nav {
+      background: #10482e;
+      padding: 14px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1050px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    section {
+      background: white;
+      margin-bottom: 25px;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px #0000000c;
+    }
+
+    h2 {
+      color: #176b45;
+      margin-top: 0;
+    }
+
+    .indicadores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .grafico {
+      border: 1px solid #e0e8e2;
+      border-radius: 10px;
+      padding: 18px;
+      overflow-wrap: anywhere;
+    }
+
+    .grafico img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-top: 12px;
+    }
+
+    .boton {
+      display: inline-block;
+      background: #176b45;
+      color: white;
+      padding: 11px 17px;
+      border-radius: 7px;
+      text-decoration: none;
+      margin: 5px 5px 5px 0;
+    }
+
+    .boton:hover {
+      background: #10482e;
+    }
+
+    footer {
+      background: #173c2b;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        display: inline-block;
+        margin: 5px;
+      }
+
+      section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Análisis de la Economía del Perú</h1>
+    <p>Datos, indicadores económicos y visualización con Python</p>
+  </header>
+
+  <nav>
+    <a href="#proyecto">Proyecto</a>
+    <a href="#graficos">Gráficos</a>
+    <a href="#datos">Datos</a>
+    <a href="#metodologia">Metodología</a>
+  </nav>
+
+  <main>
+
+    <section id="proyecto">
+      <h2>Presentación del proyecto</h2>
+      <p>
+        Este proyecto académico tiene como finalidad analizar información
+        económica del Perú mediante herramientas de programación y análisis
+        de datos. Se utilizan Python, Pandas y Google Colab para organizar
+        la información y representar visualmente los indicadores disponibles.
+      </p>
+      <p>
+        La página reúne los gráficos generados y permite consultar los
+        archivos utilizados en el análisis.
+      </p>
+    </section>
+
+    <section id="graficos">
+      <h2>Indicadores económicos</h2>
+      <p>
+        Explora las visualizaciones generadas durante el desarrollo del proyecto.
+      </p>
+
+      <div class="indicadores">
+
+        <article class="grafico">
+          <h3>Inflación</h3>
+          <p>Visualización de la evolución del indicador de inflación.</p>
+          <img src="gráfico_inflacion.png"
+               alt="Gráfico de inflación en el Perú">
+        </article>
+
+        <article class="grafico">
+          <h3>Producto Bruto Interno (PBI)</h3>
+          <p>Representación del comportamiento del PBI.</p>
+          <img src="gráfico_pbi.png"
+               alt="Gráfico del PBI del Perú">
+        </article>
+
+        <article class="grafico">
+          <h3>Tipo de cambio</h3>
+          <p>Visualización de las variaciones del tipo de cambio.</p>
+          <img src="gráfico_tipo_cambio.png"
+               alt="Gráfico del tipo de cambio">
+        </article>
+
+        <article class="grafico">
+          <h3>Empleo por regiones</h3>
+          <p>Representación de los datos de empleo por regiones.</p>
+          <img src="gráfico_empleo_regiones.png"
+               alt="Gráfico de empleo por regiones">
+        </article>
+
+      </div>
+    </section>
+
+    <section id="datos">
+      <h2>Base de datos y archivos</h2>
+      <p>
+        Consulta los archivos que respaldan el análisis económico.
+      </p>
+
+      <a class="boton" href="Economía_Perú.csv">
+        Descargar base de datos CSV
+      </a>
+
+      <a class="boton" href="resumen_economia_peru.csv">
+        Descargar resumen CSV
+      </a>
+
+      <a class="boton" href="TA3.ipynb">
+        Consultar notebook
+      </a>
+
+      <a class="boton" href="LÉAME.md">
+        Consultar documentación
+      </a>
+    </section>
+
+    <section id="metodologia">
+      <h2>Metodología y herramientas</h2>
+      <p>
+        El procedimiento comprende la carga de datos, revisión de la
+        información, análisis de variables y elaboración de gráficos.
+      </p>
+      <ul>
+        <li><strong>Google Colab:</strong> entorno de programación.</li>
+        <li><strong>Python:</strong> lenguaje utilizado para el análisis.</li>
+        <li><strong>Pandas:</strong> organización y procesamiento de datos.</li>
+        <li><strong>Matplotlib:</strong> elaboración de gráficos.</li>
+        <li><strong>GitHub Pages:</strong> publicación de la página web.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Conclusión</h2>
+      <p>
+        La visualización de los indicadores económicos facilita la
+        interpretación de los datos y permite identificar sus variaciones
+        a lo largo del tiempo. Las conclusiones específicas deberán
+        sustentarse en los resultados obtenidos en el análisis.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Proyecto académico: Análisis de la Economía del Perú</p>
+    <p>Desarrollado con Python y publicado mediante GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
